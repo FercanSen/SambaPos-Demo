@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sambapos_demo/providers/utility_provider.dart';
+import 'package:sambapos_demo/screens/second_screen.dart';
 import 'package:sambapos_demo/widgets/main_menu_item.dart';
 
 void main() {
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xFFde3939),
         ),
         home: MyHomePage(),
+        routes: {
+          SecondPage.routeName: (context) => SecondPage(),
+        },
       ),
     );
   }
@@ -50,21 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // ElevatedButton(
           //   child: Text("Print"),
           //   onPressed: () {
-          //     print(provider.mainMenuList);
+          //     print(provider.clickedMenuList[0]["name"]);
           //   },
           // ),
           Expanded(
             child: GridView.builder(
-                padding: const EdgeInsets.all(10),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2 / 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                shrinkWrap: true,
-                itemCount: provider.mainMenuList.length,
-                itemBuilder: (context, index) => MainMenuItem(index)),
+              padding: const EdgeInsets.all(10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              shrinkWrap: true,
+              itemCount: provider.mainMenuList.length,
+              itemBuilder: (context, index) => MainMenuItem(index),
+            ),
           ),
         ],
       ),
