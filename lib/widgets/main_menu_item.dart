@@ -37,13 +37,13 @@ class MainMenuItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: GridTileBar(
           title: Text(provider.mainMenuList[index]["name"]),
-          trailing: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Text(
-              provider.mainMenuList[index]["price"].toString(),
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+          // trailing: Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          //   child: Text(
+          //     provider.mainMenuList[index]["price"].toString(),
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          // ),
         ),
       ),
     );

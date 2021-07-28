@@ -14,6 +14,6 @@ class UtilityProvider with ChangeNotifier {
   }
 
   List get mainMenuList {
-    return items["menus"][0]["items"][0]["items"];
+    return items["menus"][0]["items"];
   }
 }

@@ -47,7 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Text(provider.items["menus"][0]["items"][0]["name"]),
+          // ElevatedButton(
+          //   child: Text("Print"),
+          //   onPressed: () {
+          //     print(provider.mainMenuList);
+          //   },
+          // ),
           Expanded(
             child: GridView.builder(
                 padding: const EdgeInsets.all(10),
