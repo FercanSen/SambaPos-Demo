@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import "package:flutter/services.dart" show rootBundle;
 
-import "package:yaml/yaml.dart";
+import 'package:provider/provider.dart';
+
+import 'package:sambapos_demo/providers/utility_provider.dart';
+import 'package:sambapos_demo/widgets/main_menu_item.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,13 +12,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color(0xFFde3939),
+    return ChangeNotifierProvider<UtilityProvider>(
+      create: (context) => UtilityProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Color(0xFFde3939),
+        ),
+        home: MyHomePage(),
       ),
-      home: MyHomePage(),
     );
   }
 }
@@ -27,43 +32,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Map items = {};
-
-  Future getYaml() async {
-    final yamlString =
-        await rootBundle.loadString("assets/yaml_files/menu.yaml");
-    final yamlMap = loadYaml(yamlString);
-    setState(() {
-      items = yamlMap;
-    });
-  }
-
   @override
   void initState() {
-    getYaml();
+    Provider.of<UtilityProvider>(context, listen: false).getYaml();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<UtilityProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("SambaPOS"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                print("Pressed Button");
-                print(items["menus"][0]["items"][0]["image"]);
-              },
-              child: Text("Print"),
-            ),
-            Text(items["menus"][0]["items"][0]["image"]),
-            Image.asset(items["menus"][0]["items"][0]["image"]),
-          ],
-        ),
+      body: Column(
+        children: [
+          Text(provider.items["menus"][0]["items"][0]["name"]),
+          Expanded(
+            child: GridView.builder(
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 2 / 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                shrinkWrap: true,
+                itemCount: provider.mainMenuList.length,
+                itemBuilder: (context, index) => MainMenuItem(index)),
+          ),
+        ],
       ),
     );
   }
