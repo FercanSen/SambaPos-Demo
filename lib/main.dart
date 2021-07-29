@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:sambapos_demo/providers/utility_provider.dart';
 import 'package:sambapos_demo/screens/second_screen.dart';
+import 'package:sambapos_demo/screens/submenu_screen.dart';
 import 'package:sambapos_demo/widgets/main_menu_item.dart';
 
 void main() {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
         routes: {
           SecondPage.routeName: (context) => SecondPage(),
+          SubMenuPage.routeName: (context) => SubMenuPage(),
         },
       ),
     );
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(10),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
+                childAspectRatio: 3 / 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
