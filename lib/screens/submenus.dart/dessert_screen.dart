@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sambapos_demo/providers/utility_provider.dart';
-import 'package:sambapos_demo/screens/submenus.dart/dessert_screen.dart';
 import 'package:sambapos_demo/widgets/submenu_item.dart';
 
-class DrinksPage extends StatelessWidget {
-  static const routeName = "/drink";
+class DessertPage extends StatelessWidget {
+  static const routeName = "/dessert";
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<UtilityProvider>(context, listen: false);
-    final List subMenu = ModalRoute.of(context)?.settings.arguments as List;
-    final List sideDishes = provider.items["menus"][10]["items"];
-    final subMenuItems = provider.items["menus"][10];
+    final List sideDishes = provider.items["menus"][9]["items"];
+    final subMenuItems = provider.items["menus"][9];
     return Scaffold(
       appBar: AppBar(
-        title: Text("İçecek Menüsü"),
+        title: Text("Tatlı Menüsü"),
       ),
       body: Center(
         child: Column(
@@ -41,14 +39,7 @@ class DrinksPage extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: sideDishes.length,
                 itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    if (subMenu.contains("indirimli-menu-tatli")) {
-                      Navigator.of(context).pushNamed(
-                        DessertPage.routeName,
-                        arguments: subMenu,
-                      );
-                    }
-                  },
+                  onTap: () {},
                   child: SubMenuItem(index, sideDishes),
                 ),
               ),
