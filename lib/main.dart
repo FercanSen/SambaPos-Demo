@@ -5,6 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:sambapos_demo/providers/utility_provider.dart';
 import 'package:sambapos_demo/screens/second_screen.dart';
 import 'package:sambapos_demo/screens/submenu_screen.dart';
+import 'package:sambapos_demo/screens/submenus.dart/dessert_screen.dart';
+import 'package:sambapos_demo/screens/submenus.dart/drink_screen.dart';
+import 'package:sambapos_demo/screens/submenus.dart/submenu1_screen.dart';
+import 'package:sambapos_demo/screens/submenus.dart/submenu2_screen.dart';
 import 'package:sambapos_demo/widgets/main_menu_item.dart';
 
 void main() {
@@ -26,6 +30,10 @@ class MyApp extends StatelessWidget {
         routes: {
           SecondPage.routeName: (context) => SecondPage(),
           SubMenuPage.routeName: (context) => SubMenuPage(),
+          SubMenu1Page.routeName: (context) => SubMenu1Page(),
+          SubMenu2Page.routeName: (context) => SubMenu2Page(),
+          DrinksPage.routeName: (context) => DrinksPage(),
+          DessertPage.routeName: (context) => DessertPage(),
         },
       ),
     );
