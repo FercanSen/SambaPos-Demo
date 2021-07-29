@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:sambapos_demo/screens/submenus.dart/submenu1_screen.dart';
 import 'package:sambapos_demo/widgets/submenu_item.dart';
 
 class SubMenuPage extends StatelessWidget {
@@ -7,11 +8,12 @@ class SubMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
-    final List mainDishes = arguments["items"];
+    final List arguments = ModalRoute.of(context)?.settings.arguments as List;
+    final List mainDishes = arguments[0]["items"];
+    final List subMenu = arguments[1];
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments["description"]),
+          title: Text(arguments[0]["description"]),
         ),
         body: Center(
           child: Column(
@@ -19,7 +21,7 @@ class SubMenuPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  arguments["orderTag"],
+                  arguments[0]["orderTag"],
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -34,8 +36,15 @@ class SubMenuPage extends StatelessWidget {
                   ),
                   shrinkWrap: true,
                   itemCount: mainDishes.length,
-                  itemBuilder: (context, index) =>
-                      SubMenuItem(index, mainDishes),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        SubMenu1Page.routeName,
+                        arguments: subMenu,
+                      );
+                    },
+                    child: SubMenuItem(index, mainDishes),
+                  ),
                 ),
               )
             ],
