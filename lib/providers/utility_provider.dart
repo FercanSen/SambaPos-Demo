@@ -16,4 +16,15 @@ class UtilityProvider with ChangeNotifier {
   List get mainMenuList {
     return items["menus"][0]["items"];
   }
+
+  int indexOfMenuKey(String key) {
+    final menus = items["menus"];
+    var keysList = [];
+    for (var i = 0; i < menus.length; i++) {
+      var menusKey = menus[i]["key"];
+      keysList.add(menusKey);
+    }
+    print(keysList.indexOf(key));
+    return keysList.indexOf(key).toInt();
+  }
 }
