@@ -16,41 +16,70 @@ class SecondaryMenuItem extends StatelessWidget {
     final provider = Provider.of<UtilityProvider>(context, listen: false);
     final Map secondaryMenu =
         provider.mainMenuList[argumentIndex]["items"][index];
-    final List? subMenuCheck =
+    final List? subMenu =
         provider.mainMenuList[argumentIndex]["items"][index]["subMenus"];
     return GestureDetector(
       onTap: () {
         if (secondaryMenu.containsKey("subMenus")) {
-          if (subMenuCheck!.contains("kirmizi-et-ana-yemekler")) {
+          if (subMenu!.contains("kirmizi-et-ana-yemekler")) {
             var mapInfo = provider.items["menus"][1];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
-          if (subMenuCheck.contains("beyaz-et-ana-yemekler")) {
+          if (subMenu.contains("beyaz-et-ana-yemekler")) {
             var mapInfo = provider.items["menus"][2];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
-          if (subMenuCheck
-              .contains("sebzeli-etli-indirimli-menu-ana-yemekler")) {
+          if (subMenu.contains("sebzeli-etli-indirimli-menu-ana-yemekler")) {
             var mapInfo = provider.items["menus"][3];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
-          if (subMenuCheck.contains("diyet-indirimli-menu-ana-yemekler")) {
+          if (subMenu.contains("diyet-indirimli-menu-ana-yemekler")) {
             var mapInfo = provider.items["menus"][4];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
-          if (subMenuCheck.contains("vejeteryan-indirimli-menu-ana-yemekler")) {
+          if (subMenu.contains("vejeteryan-indirimli-menu-ana-yemekler")) {
             var mapInfo = provider.items["menus"][5];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
-          if (subMenuCheck.contains("cocacola-indirimli-menu-ana-yemekler")) {
+          if (subMenu.contains("cocacola-indirimli-menu-ana-yemekler")) {
             Map mapInfo = provider.items["menus"][6];
-            Navigator.of(context)
-                .pushNamed(SubMenuPage.routeName, arguments: mapInfo);
+            Navigator.of(context).pushNamed(
+              SubMenuPage.routeName,
+              arguments: [
+                mapInfo,
+                subMenu,
+              ],
+            );
           }
         } else
           print("Selected menu does not contain subMenus");
