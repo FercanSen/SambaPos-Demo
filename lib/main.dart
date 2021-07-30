@@ -47,43 +47,47 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  void initState() {
-    Provider.of<UtilityProvider>(context, listen: false).getYaml();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<UtilityProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("SambaPOS"),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              provider.items["menus"][0]["description"],
-              style: TextStyle(fontSize: 20),
-            ),
+    final provider = Provider.of<UtilityProvider>(context, listen: false);
+    return FutureBuilder(
+      future: Provider.of<UtilityProvider>(context, listen: false).getYaml(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("SambaPOS"),
           ),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  provider.items["menus"][0]["description"],
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
-              shrinkWrap: true,
-              itemCount: provider.mainMenuList.length,
-              itemBuilder: (context, index) => MainMenuItem(index),
-            ),
+              Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  shrinkWrap: true,
+                  itemCount: provider.mainMenuList.length,
+                  itemBuilder: (context, index) => MainMenuItem(index),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
