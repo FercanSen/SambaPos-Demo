@@ -18,6 +18,13 @@ class SecondaryMenuItem extends StatelessWidget {
         provider.mainMenuList[argumentIndex]["items"][index];
     final List? subMenu =
         provider.mainMenuList[argumentIndex]["items"][index]["subMenus"];
+    final snackBar = SnackBar(
+      content: Text(
+        "There is no sub-menu's for this menu. Order complete",
+        textAlign: TextAlign.center,
+      ),
+    );
+
     return GestureDetector(
       onTap: () {
         if (secondaryMenu.containsKey("subMenus")) {
@@ -81,8 +88,9 @@ class SecondaryMenuItem extends StatelessWidget {
               ],
             );
           }
-        } else
-          print("Selected menu does not contain subMenus");
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       },
       child: GridTile(
         child: Container(
@@ -109,7 +117,6 @@ class SecondaryMenuItem extends StatelessWidget {
           child: GridTileBar(
             title: Text(
                 provider.mainMenuList[argumentIndex]["items"][index]["name"]),
-            // title: Text(provider.mainMenuList[argumentIndex]["items"]),
             trailing: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Text(
