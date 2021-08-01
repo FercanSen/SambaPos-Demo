@@ -27,4 +27,10 @@ class UtilityProvider with ChangeNotifier {
     print(keysList.indexOf(key));
     return keysList.indexOf(key).toInt();
   }
+
+  List drinksWithCocaCola() {
+    List drinksList = items["menus"][10]["items"];
+    List colaList = items["menus"][10]["items"][0]["items"];
+    return colaList + drinksList.sublist(1);
+  }
 }

@@ -13,8 +13,9 @@ class DrinksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<UtilityProvider>(context, listen: false);
     final List subMenu = ModalRoute.of(context)?.settings.arguments as List;
-    final List sideDishes = provider.items["menus"][10]["items"];
     final subMenuItems = provider.items["menus"][10];
+    final drinksWithCocaCola = provider.drinksWithCocaCola();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("İçecek Menüsü"),
@@ -39,7 +40,7 @@ class DrinksPage extends StatelessWidget {
                   mainAxisSpacing: 10,
                 ),
                 shrinkWrap: true,
-                itemCount: sideDishes.length,
+                itemCount: drinksWithCocaCola.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     if (subMenu.contains("indirimli-menu-tatli")) {
@@ -49,7 +50,7 @@ class DrinksPage extends StatelessWidget {
                       );
                     }
                   },
-                  child: SubMenuItem(index, sideDishes),
+                  child: SubMenuItem(index, drinksWithCocaCola),
                 ),
               ),
             )
